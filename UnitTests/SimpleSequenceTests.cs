@@ -49,7 +49,7 @@ namespace UnitTests
         [Test]
         public void someone_should()
         {
-            const int sequenceLength = 120;
+            const int sequenceLength = 141;
             var simples = GetSimples();
             var simplesPairs = SplitByPair(simples);
 
