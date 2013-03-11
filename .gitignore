@@ -1,0 +1,8 @@
+/_ReSharper.UnitTests
+/UnitTests.sln.DotSettings.user
+/UnitTests.v11.suo
+/UnitTests/bin
+/UnitTests/obj
+/packages/Newtonsoft.Json.4.5.11
+/packages/NUnit.2.6.2
+/packages/FluentAssertions.2.0.0.1
