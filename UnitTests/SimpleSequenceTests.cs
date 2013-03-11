@@ -633,10 +633,8 @@ namespace UnitTests
             while (true)
             {
                 currentValue += 1;
-                if (!IsSimple(currentValue))
-                    continue;
-
-                yield return currentValue;
+                if (IsSimple(currentValue))
+                    yield return currentValue;
             }
         }
 
