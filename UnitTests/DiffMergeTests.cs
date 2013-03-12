@@ -84,12 +84,21 @@ namespace UnitTests
 
         public static int CommonCharsLength(string text1, int start1, string text2, int start2)
         {
-            throw new System.NotImplementedException();
+            var length = 0;
+            while (
+                text1.Length > start1+length &&
+                text2.Length > start2+length &&
+                text1[start1+length] == text2[start2+length]
+                )
+            {
+                length += 1;
+            }
+            return length;
         }
     }
 
     [TestFixture]
-    public class DiffMergeTests
+    public class TextCompareUtilTests
     {
         [Test]
         public void CommonSubstrings_should_find_common_substrings()
@@ -105,9 +114,9 @@ namespace UnitTests
             substrings.ElementAt(0).SecondStart.Should().Be(1);
             substrings.ElementAt(0).Value.Should().Be("12");
 
-            substrings.ElementAt(1).FirstStart.Should().Be(3);
-            substrings.ElementAt(1).SecondStart.Should().Be(3);
-            substrings.ElementAt(1).Value.Should().Be("a");
+            substrings.ElementAt(1).FirstStart.Should().Be(2);
+            substrings.ElementAt(1).SecondStart.Should().Be(4);
+            substrings.ElementAt(1).Value.Should().Be("3");
 
             substrings.ElementAt(2).FirstStart.Should().Be(5);
             substrings.ElementAt(2).SecondStart.Should().Be(5);
@@ -204,7 +213,21 @@ namespace UnitTests
         [Test]
         public void CommonCharsLength_sould_calc_common_chars_sequence_length()
         {
-            throw new NotImplementedException();
+            TextCompareUtil.CommonCharsLength(
+                "0123456", 1,
+                "0123456", 1).Should().Be(6);
+
+            TextCompareUtil.CommonCharsLength(
+                "0123456789", 0,
+                "01234567cd", 0).Should().Be(8);
+
+            TextCompareUtil.CommonCharsLength(
+                "0123456789", 2,
+                "01234567cd", 2).Should().Be(6);
+
+            TextCompareUtil.CommonCharsLength(
+                "0123456789", 7,
+                "01234567cd", 7).Should().Be(1);
         }
     }
 }
