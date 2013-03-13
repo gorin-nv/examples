@@ -20,27 +20,35 @@ namespace UnitTests
         public int Length { get; private set; }
     }
 
-    public class DifferencePart
+    public class Interval
     {
-        public DifferencePart(int firstStart, int firstLength, int secondStart, int secondLength)
+        public Interval(int start, int length)
         {
-            FirstStart = firstStart;
-            FirstLength = firstLength;
-            SecondStart = secondStart;
-            SecondLength = secondLength;
+            Length = length;
+            Start = start;
         }
 
-        public int FirstStart { get; private set; }
-        public int FirstLength { get; private set; }
-        public int SecondStart { get; private set; }
-        public int SecondLength { get; private set; }
+        public int Start { get; private set; }
+        public int Length { get; private set; }
+    }
+
+    public class DifferencePart
+    {
+        public DifferencePart(Interval firstInterval, Interval secondInterval)
+        {
+            SecondInterval = secondInterval;
+            FirstInterval = firstInterval;
+        }
+
+        public Interval FirstInterval { get; private set; }
+        public Interval SecondInterval { get; private set; }
     }
 
     public class Diff
     {
-        public Diff(IEnumerable<DifferencePart> differenceParts, IEnumerable<CommonPart> identicalParts)
+        public Diff(IEnumerable<DifferencePart> differenceParts, IEnumerable<CommonPart> commonParts)
         {
-            CommonParts = identicalParts;
+            CommonParts = commonParts;
             DifferenceParts = differenceParts;
         }
 
@@ -58,7 +66,28 @@ namespace UnitTests
 
         public static Diff MakeDiff(IEnumerable<CommonPart> substringPositions, int firstLength, int secondLength)
         {
-            throw new NotImplementedException();
+            var firstPosition = 0;
+            var secondPosition = 0;
+            var differenceParts = substringPositions.Aggregate(
+                seed: new List<DifferencePart>(),
+                func: (diffs, common) =>
+                {
+                    var length1 = common.FirstStart - firstPosition;
+                    var length2 = common.SecondStart - secondPosition;
+                    DifferencePart newDiff = null;
+                    if (length1 != 0 || length2 != 0)
+                    {
+                        //newDiff = new DifferencePart(firstPosition, firstLength, secondPosition, secondLength);
+                        //diffs.Add(newDiff);
+                        //firstPosition = common.FirstStart + common.Length;
+                        //secondPosition = common.SecondStart + common.Length;
+                    }
+                    if (newDiff != null)
+                        diffs.Add(newDiff);
+                    return diffs;
+                });
+
+            return new Diff(differenceParts, substringPositions);
         }
 
         public static IEnumerable<CommonPart> CommonSubstrings(string text1, string text2)
@@ -144,20 +173,20 @@ namespace UnitTests
 
             diff.DifferenceParts.Should().HaveCount(3);
 
-            diff.DifferenceParts.ElementAt(0).FirstStart.Should().Be(0);
-            diff.DifferenceParts.ElementAt(0).FirstLength.Should().Be(1);
-            diff.DifferenceParts.ElementAt(0).SecondStart.Should().Be(0);
-            diff.DifferenceParts.ElementAt(0).SecondLength.Should().Be(2);
+            diff.DifferenceParts.ElementAt(0).FirstInterval.Start.Should().Be(0);
+            diff.DifferenceParts.ElementAt(0).FirstInterval.Length.Should().Be(1);
+            diff.DifferenceParts.ElementAt(0).SecondInterval.Start.Should().Be(0);
+            diff.DifferenceParts.ElementAt(0).SecondInterval.Length.Should().Be(2);
 
-            diff.DifferenceParts.ElementAt(1).FirstStart.Should().Be(5);
-            diff.DifferenceParts.ElementAt(1).FirstLength.Should().Be(2);
-            diff.DifferenceParts.ElementAt(1).SecondStart.Should().Be(6);
-            diff.DifferenceParts.ElementAt(1).SecondLength.Should().Be(3);
+            diff.DifferenceParts.ElementAt(1).FirstInterval.Start.Should().Be(5);
+            diff.DifferenceParts.ElementAt(1).FirstInterval.Length.Should().Be(2);
+            diff.DifferenceParts.ElementAt(1).SecondInterval.Start.Should().Be(6);
+            diff.DifferenceParts.ElementAt(1).SecondInterval.Length.Should().Be(3);
 
-            diff.DifferenceParts.ElementAt(2).FirstStart.Should().Be(9);
-            diff.DifferenceParts.ElementAt(2).FirstLength.Should().Be(6);
-            diff.DifferenceParts.ElementAt(2).SecondStart.Should().Be(11);
-            diff.DifferenceParts.ElementAt(2).SecondLength.Should().Be(9);
+            diff.DifferenceParts.ElementAt(2).FirstInterval.Start.Should().Be(9);
+            diff.DifferenceParts.ElementAt(2).FirstInterval.Length.Should().Be(6);
+            diff.DifferenceParts.ElementAt(2).SecondInterval.Start.Should().Be(11);
+            diff.DifferenceParts.ElementAt(2).SecondInterval.Length.Should().Be(9);
 
             diff.CommonParts.Should().HaveCount(2);
 
