@@ -61,7 +61,15 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="DiffMergeTests.cs" />
+    <Compile Include="DiffMerge.Lib\CommonPart.cs" />
+    <Compile Include="DiffMerge.Lib\CommonSubstringsFinder.cs" />
+    <Compile Include="DiffMerge.Lib\Diff.cs" />
+    <Compile Include="DiffMerge.Lib\DifferencePart.cs" />
+    <Compile Include="DiffMerge.Lib\DiffMergeUtil.cs" />
+    <Compile Include="DiffMerge.Lib\ICommonSubstringsFinder.cs" />
+    <Compile Include="DiffMerge.Lib\Interval.cs" />
+    <Compile Include="DiffMerge.Tests\CommonSubstringsFinderTests.cs" />
+    <Compile Include="DiffMerge.Tests\DiffMergeUtilTests.cs" />
     <Compile Include="SimpleSequenceTests.cs" />
     <Compile Include="TextTreeTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
