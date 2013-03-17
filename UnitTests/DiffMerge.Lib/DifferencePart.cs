@@ -2,13 +2,13 @@ namespace UnitTests.DiffMerge.Lib
 {
     public class DifferencePart
     {
-        public DifferencePart(Interval firstInterval, Interval secondInterval)
+        public DifferencePart(Range firstRange, Range secondRange)
         {
-            SecondInterval = secondInterval;
-            FirstInterval = firstInterval;
+            SecondRange = secondRange;
+            FirstRange = firstRange;
         }
 
-        public Interval FirstInterval { get; private set; }
-        public Interval SecondInterval { get; private set; }
+        public Range FirstRange { get; private set; }
+        public Range SecondRange { get; private set; }
     }
 }

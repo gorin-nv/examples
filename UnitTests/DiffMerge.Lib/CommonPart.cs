@@ -2,15 +2,19 @@ namespace UnitTests.DiffMerge.Lib
 {
     public class CommonPart
     {
-        public CommonPart(int firstStart, int secondStart, int length)
+        public CommonPart(Range first, Range second)
         {
-            FirstStart = firstStart;
-            SecondStart = secondStart;
-            Length = length;
+            First = first;
+            Second = second;
         }
 
-        public int FirstStart { get; private set; }
-        public int SecondStart { get; private set; }
-        public int Length { get; private set; }
+        public CommonPart(int firstStart, int secondStart, int length)
+        {
+            First = new Range(firstStart, firstStart + length - 1);
+            Second = new Range(secondStart, secondStart + length - 1);
+        }
+
+        public Range First { get; private set; }
+        public Range Second { get; private set; }
     }
 }

@@ -18,25 +18,25 @@ namespace UnitTests.DiffMerge.Tests
 
             substrings.Should().HaveCount(5);
 
-            substrings.ElementAt(0).FirstStart.Should().Be(0);
-            substrings.ElementAt(0).SecondStart.Should().Be(1);
-            substrings.ElementAt(0).Length.Should().Be(2);
+            substrings.ElementAt(0).First.Start.Should().Be(0);
+            substrings.ElementAt(0).Second.Start.Should().Be(1);
+            substrings.ElementAt(0).First.Length.Should().Be(2);
 
-            substrings.ElementAt(1).FirstStart.Should().Be(2);
-            substrings.ElementAt(1).SecondStart.Should().Be(4);
-            substrings.ElementAt(1).Length.Should().Be(1);
+            substrings.ElementAt(1).First.Start.Should().Be(2);
+            substrings.ElementAt(1).Second.Start.Should().Be(4);
+            substrings.ElementAt(1).First.Length.Should().Be(1);
 
-            substrings.ElementAt(2).FirstStart.Should().Be(5);
-            substrings.ElementAt(2).SecondStart.Should().Be(5);
-            substrings.ElementAt(2).Length.Should().Be(3);
+            substrings.ElementAt(2).First.Start.Should().Be(5);
+            substrings.ElementAt(2).Second.Start.Should().Be(5);
+            substrings.ElementAt(2).First.Length.Should().Be(3);
 
-            substrings.ElementAt(3).FirstStart.Should().Be(8);
-            substrings.ElementAt(3).SecondStart.Should().Be(11);
-            substrings.ElementAt(3).Length.Should().Be(1);
+            substrings.ElementAt(3).First.Start.Should().Be(8);
+            substrings.ElementAt(3).Second.Start.Should().Be(11);
+            substrings.ElementAt(3).First.Length.Should().Be(1);
 
-            substrings.ElementAt(4).FirstStart.Should().Be(10);
-            substrings.ElementAt(4).SecondStart.Should().Be(13);
-            substrings.ElementAt(4).Length.Should().Be(1);
+            substrings.ElementAt(4).First.Start.Should().Be(10);
+            substrings.ElementAt(4).Second.Start.Should().Be(13);
+            substrings.ElementAt(4).First.Length.Should().Be(1);
         }
 
         [Test]
@@ -45,37 +45,37 @@ namespace UnitTests.DiffMerge.Tests
             var position1 = new CommonSubstringsFinder().FindFirstSubstribngPosition(
                 "abc123abc456", 0,
                 "qwebbccbce", 0);
-            position1.FirstStart.Should().Be(1);
-            position1.SecondStart.Should().Be(3);
-            position1.Length.Should().Be(1);
+            position1.First.Start.Should().Be(1);
+            position1.Second.Start.Should().Be(3);
+            position1.First.Length.Should().Be(1);
 
             var position2 = new CommonSubstringsFinder().FindFirstSubstribngPosition(
                 "abc123abc456", 0,
                 "qwebbccbce", 5);
-            position2.FirstStart.Should().Be(1);
-            position2.SecondStart.Should().Be(7);
-            position2.Length.Should().Be(2);
+            position2.First.Start.Should().Be(1);
+            position2.Second.Start.Should().Be(7);
+            position2.First.Length.Should().Be(2);
 
             var position3 = new CommonSubstringsFinder().FindFirstSubstribngPosition(
                 "abc123abc456", 2,
                 "qwebbccbce", 1);
-            position3.FirstStart.Should().Be(2);
-            position3.SecondStart.Should().Be(5);
-            position3.Length.Should().Be(1);
+            position3.First.Start.Should().Be(2);
+            position3.Second.Start.Should().Be(5);
+            position3.First.Length.Should().Be(1);
 
             var position4 = new CommonSubstringsFinder().FindFirstSubstribngPosition(
                 "abc123abc456", 2,
                 "qwebbccbce", 1);
-            position4.FirstStart.Should().Be(2);
-            position4.SecondStart.Should().Be(5);
-            position4.Length.Should().Be(1);
+            position4.First.Start.Should().Be(2);
+            position4.Second.Start.Should().Be(5);
+            position4.First.Length.Should().Be(1);
 
             var position5 = new CommonSubstringsFinder().FindFirstSubstribngPosition(
                 "abc123abc456", 3,
                 "qwebbccbce", 5);
-            position5.FirstStart.Should().Be(7);
-            position5.SecondStart.Should().Be(7);
-            position5.Length.Should().Be(2);
+            position5.First.Start.Should().Be(7);
+            position5.Second.Start.Should().Be(7);
+            position5.First.Length.Should().Be(2);
 
             var position6 = new CommonSubstringsFinder().FindFirstSubstribngPosition(
                 "abc123abc456", 9,
@@ -114,7 +114,7 @@ namespace UnitTests.DiffMerge.Tests
         }
 
         [Test]
-        public void CommonCharsLength_should_calc_common_chars_sequence_length()
+        public void CommonCharLength_should_calc_common_chars_sequence_Length()
         {
             new CommonSubstringsFinder().CommonCharsLength(
                 "0123456", 1,

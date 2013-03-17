@@ -16,8 +16,8 @@ namespace UnitTests.DiffMerge.Lib
                 if (position == null)
                     yield break;
                 yield return position;
-                currentFirstPosition = position.FirstStart + position.Length;
-                currentSecondPosition = position.SecondStart + position.Length;
+                currentFirstPosition = position.First.Stop + 1;
+                currentSecondPosition = position.Second.Stop + 1;
             }
         }
 

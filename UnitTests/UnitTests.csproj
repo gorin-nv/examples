@@ -67,11 +67,11 @@
     <Compile Include="DiffMerge.Lib\DifferencePart.cs" />
     <Compile Include="DiffMerge.Lib\DiffMergeUtil.cs" />
     <Compile Include="DiffMerge.Lib\ICommonSubstringsFinder.cs" />
-    <Compile Include="DiffMerge.Lib\Interval.cs" />
+    <Compile Include="DiffMerge.Lib\Range.cs" />
     <Compile Include="DiffMerge.Tests\CommonSubstringsFinderTests.cs" />
     <Compile Include="DiffMerge.Tests\DiffMergeUtilTests.cs" />
-    <Compile Include="SimpleSequenceTests.cs" />
-    <Compile Include="TextTreeTests.cs" />
+    <Compile Include="DiffMerge.Lib\EnumerableHelper.cs" />
+    <Compile Include="DiffMerge.Tests\EnumerableHelperTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
