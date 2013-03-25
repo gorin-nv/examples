@@ -61,6 +61,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="TextTreeTests.cs" />
     <Compile Include="DiffMerge.Lib\CommonPart.cs" />
     <Compile Include="DiffMerge.Lib\CommonSubstringsFinder.cs" />
     <Compile Include="DiffMerge.Lib\Diff.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="DiffMerge.Lib\EnumerableHelper.cs" />
     <Compile Include="DiffMerge.Tests\EnumerableHelperTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SimpleSequenceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
