@@ -2,9 +2,9 @@ using System.Collections.Generic;
 
 namespace DiffMerge.Lib
 {
-    public class EnumerableHelper
+    public static class EnumerableHelper
     {
-        public IEnumerable<Pair<T>> SplitByPair<T>(IEnumerable<T> enumerable)
+        public static IEnumerable<Pair<T>> SplitByPair<T>(this IEnumerable<T> enumerable)
         {
             var iterator = enumerable.GetEnumerator();
             if (!iterator.MoveNext())

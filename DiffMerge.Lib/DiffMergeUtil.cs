@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -19,42 +18,28 @@ namespace DiffMerge.Lib
             return new Diff(differenceParts, enumeratedCommonParts);
         }
 
-        private IEnumerable<DifferencePart> CreateDifference(CommonPart[] commonParts, int originalLength, int changedLength)
+        private IEnumerable<DifferencePart> CreateDifference(IEnumerable<CommonPart> commonParts, int originalLength, int changedLength)
         {
-            if (commonParts.Length == 0)
-                yield break;
-
-            var firstCommonPart = commonParts[0];
-            var originalBegin = FirstRange(firstCommonPart.Original);
-            var changedBegin = FirstRange(firstCommonPart.Changed);
-            if (originalBegin != null || changedBegin != null)
-                yield return new DifferencePart(originalBegin, changedBegin);
-
-            var neighbourCommonParts = new EnumerableHelper().SplitByPair(commonParts);
-            foreach (var pair in neighbourCommonParts)
-            {
-                var original = Range.Between(pair.First.Original, pair.Second.Original);
-                var changed = Range.Between(pair.First.Changed, pair.Second.Changed);
-                yield return new DifferencePart(original, changed);
-            }
-
-            var lastCommonPart = commonParts.Last();
-            var originalEnd = LastRange(lastCommonPart.Original, originalLength);
-            var changedEnd = LastRange(lastCommonPart.Changed, changedLength);
-            if(originalEnd != null || changedEnd != null)
-                yield return new DifferencePart(originalEnd, changedEnd);
+            return from pair in BorderCommonParts(commonParts, originalLength, changedLength).SplitByPair()
+                   let original = Range.Between(pair.First.Original, pair.Second.Original)
+                   let changed = Range.Between(pair.First.Changed, pair.Second.Changed)
+                   where original != null || changed != null
+                   select new DifferencePart(original, changed);
         }
 
-        private Range FirstRange(Range range)
+        private IEnumerable<CommonPart> BorderCommonParts(IEnumerable<CommonPart> commonParts, int originalLength, int changedLength)
         {
             var lowBorder = new Range(-1, -1);
-            return Range.Between(lowBorder, range);
-        }
+            yield return new CommonPart(lowBorder, lowBorder);
 
-        private Range LastRange(Range range, int length)
-        {
-            var highBorder = new Range(length, length);
-            return Range.Between(range, highBorder);
+            foreach (var commonPart in commonParts)
+            {
+                yield return commonPart;
+            }
+
+            var originalHighBorder = new Range(originalLength, originalLength);
+            var changedHighBorder = new Range(changedLength, changedLength);
+            yield return new CommonPart(originalHighBorder, changedHighBorder);
         }
     }
 }

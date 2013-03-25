@@ -22,7 +22,7 @@ namespace DiffMerge.Lib.Tests
                                              new Pair<int>(7, 8)
                                          };
 
-            var enumerable = new EnumerableHelper().SplitByPair(testedEnumerable).ToList();
+            var enumerable = testedEnumerable.SplitByPair().ToList();
 
             enumerable.Should().HaveSameCount(expectedEnumerable);
 
