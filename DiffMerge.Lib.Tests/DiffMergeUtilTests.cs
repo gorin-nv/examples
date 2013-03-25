@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using DiffMerge.Lib.DiffStructure;
 using FluentAssertions;
@@ -58,6 +59,12 @@ namespace DiffMerge.Lib.Tests
             diff.CommonParts.ElementAt(0).Changed.Stop.Should().Be(5);
             diff.CommonParts.ElementAt(1).Changed.Start.Should().Be(9);
             diff.CommonParts.ElementAt(1).Changed.Stop.Should().Be(10);
+        }
+
+        [Test]
+        public void MakeMerge_should_make_merge()
+        {
+            throw new NotImplementedException();
         }
     }
 }
