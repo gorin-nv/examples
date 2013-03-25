@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using FluentAssertions;
@@ -11,54 +9,6 @@ namespace UnitTests
     [TestFixture]
     public class SimpleSequenceTests
     {
-        private class Pair<T>
-        {
-            public Pair(T first, T second)
-            {
-                First = first;
-                Second = second;
-            }
-
-            public T First { get; private set; }
-            public T Second { get; private set; }
-
-            public override int GetHashCode()
-            {
-                unchecked
-                {
-                    return (EqualityComparer<T>.Default.GetHashCode(First) * 397) ^
-                           EqualityComparer<T>.Default.GetHashCode(Second);
-                }
-            }
-
-            public override bool Equals(object obj)
-            {
-                if (ReferenceEquals(null, obj)) return false;
-                if (ReferenceEquals(this, obj)) return true;
-                if (obj.GetType() != GetType()) return false;
-                return Equals((Pair<T>)obj);
-            }
-
-            private bool Equals(Pair<T> other)
-            {
-                return EqualityComparer<T>.Default.Equals(First, other.First) &&
-                       EqualityComparer<T>.Default.Equals(Second, other.Second);
-            }
-        }
-
-        [Test]
-        public void someone_should()
-        {
-            const int sequenceLength = 41;
-            var simples = GetSimples();
-            var simplesPairs = SplitByPair(simples);
-
-            var minimalNotSimpleRange = simplesPairs.First(pair => pair.Second - pair.First - 1 == sequenceLength);
-            var notSimples = BigIntRange(minimalNotSimpleRange.First + 1, minimalNotSimpleRange.Second);
-            var message = string.Join(", ", notSimples);
-            Assert.Pass(message);
-        }
-
         [Test]
         public void GetSimples_should_return_simples_enumerable()
         {
@@ -575,26 +525,6 @@ namespace UnitTests
         }
 
         [Test]
-        public void SplitByPair_should_split_enumerable_by_two()
-        {
-            var testedEnumerable = new[] { 1, 2, 3, 4, 5, 6, 7, 8 };
-            var expectedEnumerable = new[]
-                                         {
-                                             new Pair<int>(1, 2),
-                                             new Pair<int>(2, 3),
-                                             new Pair<int>(3, 4),
-                                             new Pair<int>(4, 5),
-                                             new Pair<int>(5, 6),
-                                             new Pair<int>(6, 7),
-                                             new Pair<int>(7, 8)
-                                         };
-
-            var enumerable = SplitByPair(testedEnumerable).ToList();
-
-            enumerable.ShouldBeEquivalentTo(expectedEnumerable);
-        }
-
-        [Test]
         public void IsSimple_should_calc_simple_property()
         {
             IsSimple(11).Should().BeTrue();
@@ -609,22 +539,6 @@ namespace UnitTests
             IsSimple(3570).Should().BeFalse();
             IsSimple(3571).Should().BeTrue();
             IsSimple(3572).Should().BeFalse();
-        }
-
-        private IEnumerable<Pair<T>> SplitByPair<T>(IEnumerable<T> enumerable)
-        {
-            var iterator = enumerable.GetEnumerator();
-            if (!iterator.MoveNext())
-                yield break;
-            var first = iterator.Current;
-            if (!iterator.MoveNext())
-                yield break;
-            do
-            {
-                var second = iterator.Current;
-                yield return new Pair<T>(first, second);
-                first = second;
-            } while (iterator.MoveNext());
         }
 
         private IEnumerable<BigInteger> GetSimples()
@@ -653,16 +567,6 @@ namespace UnitTests
                     return false;
             }
             return true;
-        }
-
-        private IEnumerable<BigInteger> BigIntRange(BigInteger current, BigInteger stop)
-        {
-            var next = current;
-            while (next < stop)
-            {
-                yield return next;
-                next += 1;
-            }
         }
     }
 }
