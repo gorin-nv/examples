@@ -544,12 +544,17 @@ namespace UnitTests
 
         private IEnumerable<BigInteger> GetSimples()
         {
-            var currentValue = BigInteger.One;
+            return GetSimplesFrom(BigInteger.One);
+        }
+
+        private IEnumerable<BigInteger> GetSimplesFrom(BigInteger starValue)
+        {
+            var currentValue = starValue;
             while (true)
             {
-                currentValue += 1;
                 if (IsSimple(currentValue))
                     yield return currentValue;
+                currentValue += 1;
             }
         }
 
