@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using FluentAssertions;
@@ -559,7 +560,7 @@ namespace UnitTests
                 return false;
 
             var border = value;
-            for (var i = minimalSimpleValue; i < border; i++)
+            for (BigInteger i = minimalSimpleValue; i < border; i++)
             {
                 BigInteger remainder;
                 border = BigInteger.DivRem(value, i, out remainder);
