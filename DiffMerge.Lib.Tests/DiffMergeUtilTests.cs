@@ -1,4 +1,5 @@
 using System.Linq;
+using DiffMerge.Lib.DiffStructure;
 using FluentAssertions;
 using NUnit.Framework;
 

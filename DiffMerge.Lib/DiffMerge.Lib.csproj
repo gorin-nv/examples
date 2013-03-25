@@ -34,10 +34,10 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommonPart.cs" />
+    <Compile Include="DiffStructure\CommonPart.cs" />
     <Compile Include="CommonSubstringsFinder.cs" />
-    <Compile Include="Diff.cs" />
-    <Compile Include="DifferencePart.cs" />
+    <Compile Include="DiffStructure\Diff.cs" />
+    <Compile Include="DiffStructure\DifferencePart.cs" />
     <Compile Include="DiffMergeUtil.cs" />
     <Compile Include="EnumerableHelper.cs" />
     <Compile Include="ICommonSubstringsFinder.cs" />

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using DiffMerge.Lib.DiffStructure;
 
 namespace DiffMerge.Lib
 {

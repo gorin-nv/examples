@@ -1,4 +1,4 @@
-namespace DiffMerge.Lib
+namespace DiffMerge.Lib.DiffStructure
 {
     public class DifferencePart
     {

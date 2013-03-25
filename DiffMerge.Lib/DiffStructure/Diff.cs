@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace DiffMerge.Lib
+namespace DiffMerge.Lib.DiffStructure
 {
     public class Diff
     {
