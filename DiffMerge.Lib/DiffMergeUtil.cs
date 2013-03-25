@@ -6,65 +6,55 @@ namespace DiffMerge.Lib
 {
     public class DiffMergeUtil
     {
-        public Diff MakeDiff(ICommonSubstringsFinder finder, string text1, string text2)
+        public Diff MakeDiff(ICommonSubstringsFinder finder, string original, string changed)
         {
-            var positions = finder.CommonSubstrings(text1, text2);
-            return MakeDiff(positions, text1.Length, text2.Length);
+            var positions = finder.CommonSubstrings(original, changed);
+            return MakeDiff(positions, original.Length, changed.Length);
         }
 
-        public Diff MakeDiff(IEnumerable<CommonPart> substringPositions, int firstLength, int secondLength)
+        public Diff MakeDiff(IEnumerable<CommonPart> commonParts, int originalLength, int changedLength)
         {
-            var commonParts = substringPositions as CommonPart[] ?? substringPositions.ToArray();
-            var differenceParts = CreateDifference(commonParts, firstLength, secondLength).ToArray();
-            return new Diff(differenceParts, commonParts);
+            var enumeratedCommonParts = commonParts as CommonPart[] ?? commonParts.ToArray();
+            var differenceParts = CreateDifference(enumeratedCommonParts, originalLength, changedLength).ToArray();
+            return new Diff(differenceParts, enumeratedCommonParts);
         }
 
-        private IEnumerable<DifferencePart> CreateDifference(CommonPart[] substringPositions, int firstLength, int secondLength)
+        private IEnumerable<DifferencePart> CreateDifference(CommonPart[] commonParts, int originalLength, int changedLength)
         {
-            if (substringPositions.Length == 0)
+            if (commonParts.Length == 0)
                 yield break;
 
-            var begin = BeginDifferencePart(substringPositions);
-            if (begin != null)
-                yield return begin;
+            var firstCommonPart = commonParts[0];
+            var originalBegin = FirstRange(firstCommonPart.Original);
+            var changedBegin = FirstRange(firstCommonPart.Changed);
+            if (originalBegin != null || changedBegin != null)
+                yield return new DifferencePart(originalBegin, changedBegin);
 
-            var neighbourCommonParts = new EnumerableHelper().SplitByPair(substringPositions);
+            var neighbourCommonParts = new EnumerableHelper().SplitByPair(commonParts);
             foreach (var pair in neighbourCommonParts)
             {
-                var first = Range.Between(pair.First.First, pair.Second.First);
-                var second = Range.Between(pair.First.Second, pair.Second.Second);
-                yield return new DifferencePart(first, second);
+                var original = Range.Between(pair.First.Original, pair.Second.Original);
+                var changed = Range.Between(pair.First.Changed, pair.Second.Changed);
+                yield return new DifferencePart(original, changed);
             }
 
-            var end = EndDifferencePart(substringPositions, firstLength, secondLength);
-            if (end != null)
-                yield return end;
+            var lastCommonPart = commonParts.Last();
+            var originalEnd = LastRange(lastCommonPart.Original, originalLength);
+            var changedEnd = LastRange(lastCommonPart.Changed, changedLength);
+            if(originalEnd != null || changedEnd != null)
+                yield return new DifferencePart(originalEnd, changedEnd);
         }
 
-        private DifferencePart BeginDifferencePart(CommonPart[] substringPositions)
+        private Range FirstRange(Range range)
         {
-            Func<Range, Range> beginRange =
-                range => range.Start > 0
-                             ? new Range(0, range.Start - 1)
-                             : null;
-            var firstBegin = beginRange(substringPositions[0].First);
-            var secondBegin = beginRange(substringPositions[0].Second);
-            return firstBegin != null || secondBegin != null
-                    ? new DifferencePart(firstBegin, secondBegin)
-                    : null;
+            var lowBorder = new Range(-1, -1);
+            return Range.Between(lowBorder, range);
         }
 
-        private DifferencePart EndDifferencePart(CommonPart[] substringPositions, int firstLength, int secondLength)
+        private Range LastRange(Range range, int length)
         {
-            Func<Range, int, Range> endRange =
-                (range, maximum) => range.Stop < maximum
-                                        ? new Range(range.Stop + 1, maximum)
-                                        : null;
-            var firstEnd = endRange(substringPositions.Last().First, firstLength - 1);
-            var secondEnd = endRange(substringPositions.Last().Second, secondLength - 1);
-            return firstEnd != null || secondEnd != null
-                       ? new DifferencePart(firstEnd, secondEnd)
-                       : null;
+            var highBorder = new Range(length, length);
+            return Range.Between(range, highBorder);
         }
     }
 }

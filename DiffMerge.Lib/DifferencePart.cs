@@ -2,13 +2,13 @@ namespace DiffMerge.Lib
 {
     public class DifferencePart
     {
-        public DifferencePart(Range firstRange, Range secondRange)
+        public DifferencePart(Range original, Range changed)
         {
-            SecondRange = secondRange;
-            FirstRange = firstRange;
+            Original = original;
+            Changed = changed;
         }
 
-        public Range FirstRange { get; private set; }
-        public Range SecondRange { get; private set; }
+        public Range Original { get; private set; }
+        public Range Changed { get; private set; }
     }
 }

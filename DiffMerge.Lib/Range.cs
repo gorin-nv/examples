@@ -18,7 +18,9 @@ namespace DiffMerge.Lib
 
         public static Range Between(Range first, Range second)
         {
-            return new Range(first.Stop + 1, second.Start - 1);
+            var start = first.Stop + 1;
+            var stop = second.Start - 1;
+            return start <= stop ? new Range(start, stop) : null;
         }
     }
 }

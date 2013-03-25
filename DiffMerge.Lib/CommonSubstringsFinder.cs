@@ -16,8 +16,8 @@ namespace DiffMerge.Lib
                 if (position == null)
                     yield break;
                 yield return position;
-                currentFirstPosition = position.First.Stop + 1;
-                currentSecondPosition = position.Second.Stop + 1;
+                currentFirstPosition = position.Original.Stop + 1;
+                currentSecondPosition = position.Changed.Stop + 1;
             }
         }
 

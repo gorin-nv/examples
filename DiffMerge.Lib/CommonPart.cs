@@ -2,19 +2,19 @@ namespace DiffMerge.Lib
 {
     public class CommonPart
     {
-        public CommonPart(Range first, Range second)
+        public CommonPart(Range origianl, Range changed)
         {
-            First = first;
-            Second = second;
+            Original = origianl;
+            Changed = changed;
         }
 
-        public CommonPart(int firstStart, int secondStart, int length)
+        public CommonPart(int originalStart, int changedStart, int commonLength)
         {
-            First = new Range(firstStart, firstStart + length - 1);
-            Second = new Range(secondStart, secondStart + length - 1);
+            Original = new Range(originalStart, originalStart + commonLength - 1);
+            Changed = new Range(changedStart, changedStart + commonLength - 1);
         }
 
-        public Range First { get; private set; }
-        public Range Second { get; private set; }
+        public Range Original { get; private set; }
+        public Range Changed { get; private set; }
     }
 }
