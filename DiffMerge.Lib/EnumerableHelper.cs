@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace UnitTests.DiffMerge.Lib
+namespace DiffMerge.Lib
 {
     public class EnumerableHelper
     {

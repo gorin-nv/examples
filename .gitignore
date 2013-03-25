@@ -8,3 +8,7 @@
 /packages/FluentAssertions.2.0.0.1
 /packages/FluentAssertions.2.0.1
 /.nuget
+/DiffMerge.Lib/bin
+/DiffMerge.Lib/obj
+/DiffMerge.Lib.Tests/bin
+/DiffMerge.Lib.Tests/obj

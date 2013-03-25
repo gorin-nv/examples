@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace UnitTests.DiffMerge.Lib
+namespace DiffMerge.Lib
 {
     public class DiffMergeUtil
     {

@@ -10,6 +10,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{53AF30
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiffMerge.Lib", "DiffMerge.Lib\DiffMerge.Lib.csproj", "{B111EF9C-50EA-41A6-B3D5-9C25FABD7929}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiffMerge.Lib.Tests", "DiffMerge.Lib.Tests\DiffMerge.Lib.Tests.csproj", "{984A4DC2-A9E8-4CE5-A2D4-F3DED2F61ED7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +24,14 @@ Global
 		{BDD38E7A-7EE3-414C-A192-67BB232EBBE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BDD38E7A-7EE3-414C-A192-67BB232EBBE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BDD38E7A-7EE3-414C-A192-67BB232EBBE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B111EF9C-50EA-41A6-B3D5-9C25FABD7929}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B111EF9C-50EA-41A6-B3D5-9C25FABD7929}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B111EF9C-50EA-41A6-B3D5-9C25FABD7929}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B111EF9C-50EA-41A6-B3D5-9C25FABD7929}.Release|Any CPU.Build.0 = Release|Any CPU
+		{984A4DC2-A9E8-4CE5-A2D4-F3DED2F61ED7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{984A4DC2-A9E8-4CE5-A2D4-F3DED2F61ED7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{984A4DC2-A9E8-4CE5-A2D4-F3DED2F61ED7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{984A4DC2-A9E8-4CE5-A2D4-F3DED2F61ED7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,9 +1,8 @@
 using System.Linq;
 using FluentAssertions;
 using NUnit.Framework;
-using UnitTests.DiffMerge.Lib;
 
-namespace UnitTests.DiffMerge.Tests
+namespace DiffMerge.Lib.Tests
 {
     [TestFixture]
     public class EnumerableHelperTests

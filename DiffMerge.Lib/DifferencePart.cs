@@ -1,4 +1,4 @@
-namespace UnitTests.DiffMerge.Lib
+namespace DiffMerge.Lib
 {
     public class DifferencePart
     {
