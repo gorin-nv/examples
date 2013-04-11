@@ -41,6 +41,7 @@
     <Compile Include="DiffMergeUtil.cs" />
     <Compile Include="EnumerableHelper.cs" />
     <Compile Include="ICommonSubstringsFinder.cs" />
+    <Compile Include="MergeStructure\Merge.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Range.cs" />
   </ItemGroup>

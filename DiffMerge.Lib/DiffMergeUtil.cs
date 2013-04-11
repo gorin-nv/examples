@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DiffMerge.Lib.DiffStructure;
+using DiffMerge.Lib.MergeStructure;
 
 namespace DiffMerge.Lib
 {
@@ -41,6 +42,11 @@ namespace DiffMerge.Lib
             var originalHighBorder = new Range(originalLength, originalLength);
             var changedHighBorder = new Range(changedLength, changedLength);
             yield return new CommonPart(originalHighBorder, changedHighBorder);
+        }
+
+        public Merge MakeMerge(IEnumerable<DifferencePart> originalDiff, IEnumerable<DifferencePart> mergedDiff)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

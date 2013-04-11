@@ -64,7 +64,9 @@ namespace DiffMerge.Lib.Tests
         [Test]
         public void MakeMerge_should_make_merge()
         {
-            throw new NotImplementedException();
+            var originalDiff = new DifferencePart[0];
+            var mergedDiff = new DifferencePart[0];
+            var merge = new DiffMergeUtil().MakeMerge(originalDiff, mergedDiff);
         }
     }
 }
